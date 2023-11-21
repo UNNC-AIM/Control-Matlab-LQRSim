@@ -11,11 +11,11 @@ initialAngle = deg2rad(20);
 
 %% Predicted System Implimentation
 M_ideal = 20;
-l_ideal = 0.3;
+l_ideal = 0.4;
 Jyy_ideal = 0.6;
 COM_ideal = [0,0,0];
 g_ideal = 9.8;
-b_ideal = 0;
+b_ideal = 0.2;
 
 %% LQR
 A = [0, 1, 0, 0;
@@ -44,3 +44,13 @@ K_est = lqr(A, B, Q, R);
 
 Am = A_est - B_est*K_est;
 Kr_est = 1;
+
+%% LMI inequality based LQR Controller
+C = eye(4);
+D = [0;0;0;0];
+
+setlmis([])
+P = lmivar(1, [4, 1]);
+
+lmiterm([1, 1, 1, P])
+
