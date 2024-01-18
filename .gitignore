@@ -1,5 +1,6 @@
 .DS_Store
-*.autosave
-*.original
-*.slxc
-/slprj
+*.autosave*
+*.original*
+*.slxc*
+*.asv*
+*slprj*
